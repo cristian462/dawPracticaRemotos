@@ -1,18 +1,52 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Despliegue</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body {
+            margin: 0;
+            overflow: hidden;
+        }
+
+        #rebotador {
+            position: absolute;
+            font-size: 24px;
+            color: #3498db;
+            white-space: nowrap;
+        }
+    </style>
+    <title>Palabra Rebotadora</title>
 </head>
 <body>
-  <h1>Módulo de Desarrollo de Aplicaciones Web</h1>
-  <ul>
-    <li>Despliegue de aplicaciones web</li>
-    <li>Cliente</li>
-    <li>Programación</li>
-    <li>FOL</li>
-    <li>Bases de Datos</li>
-  </ul>
+
+<div id="rebotador">Hola</div>
+
+<script>
+    const rebotador = document.getElementById('rebotador');
+    let velocidadX = 2;
+    let velocidadY = 2;
+
+    function animar() {
+        const rect = rebotador.getBoundingClientRect();
+
+        if (rect.left + velocidadX < 0 || rect.right + velocidadX > window.innerWidth) {
+            velocidadX = -velocidadX;
+        }
+
+        if (rect.top + velocidadY < 0 || rect.bottom + velocidadY > window.innerHeight) {
+            velocidadY = -velocidadY;
+        }
+
+        rebotador.style.left = rect.left + velocidadX + 'px';
+        rebotador.style.top = rect.top + velocidadY + 'px';
+
+        requestAnimationFrame(animar);
+    }
+
+    animar();
+</script>
+
 </body>
 </html>
+
